@@ -1,0 +1,38 @@
+name: Create booking
+
+on:
+  schedule:
+    # Run at 6:31 PM UTC every day (12:01 AM IST next day)
+    - cron: '31 18 * * *'
+  workflow_dispatch:  # Allows manual triggering
+
+jobs:
+  call-api:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 11 and Kotlin
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+
+      - name: Cache Kotlin Compiler
+        uses: actions/cache@v3
+        with:
+          path: ~/.kotlin
+          key: ${{ runner.os }}-kotlin-cache
+
+      - name: Run API call script
+        env:
+          AUTOBOOKING_SESSION_COOKIE: ${{ secrets.AUTOBOOKING_SESSION_COOKIE }}
+          AUTOBOOKING_TELEGRAM_BOT_TOKEN: ${{ secrets.AUTOBOOKING_TELEGRAM_BOT_TOKEN }}
+          AUTOBOOKING_DESK_ID: ${{ secrets.AUTOBOOKING_DESK_ID }}
+          AUTOBOOKING_TELEGRAM_CHAT_ID: ${{ secrets.AUTOBOOKING_TELEGRAM_CHAT_ID }}
+        run: |
+          kotlinc Main.kt -include-runtime -d main.jar 
+          java -jar main.jar createbooking
+
+
