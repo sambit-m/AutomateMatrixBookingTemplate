@@ -160,7 +160,7 @@ fun bookSeat() {
     val apiUrl = "https://app.matrixbooking.com/api/v1/booking"
     val apiPayload = """
         {
-            "timeFrom":"${currentDate}T09:00:00.000",
+            "timeFrom":"${currentDate}T10:00:00.000",
             "timeTo":"${currentDate}T19:00:00.000",
             "locationId":$locationId,
             "attendees":[],
