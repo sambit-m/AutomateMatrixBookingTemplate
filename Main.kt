@@ -128,7 +128,7 @@ fun isBookingAlreadyMade() {
     val checkUrl = "https://app.matrixbooking.com/api/v1/booking/check"
     val checkPayload = """
         {
-            "timeFrom":"${currentDate}T09:00:00.000",
+            "timeFrom":"${currentDate}T10:00:00.000",
             "timeTo":"${currentDate}T19:00:00.000",
             "locationId":$locationId,
             "attendees":[],
