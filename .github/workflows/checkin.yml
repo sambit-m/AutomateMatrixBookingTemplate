@@ -2,8 +2,8 @@ name: Check-in
 
 on:
   schedule:
-    # Run at 3:31 AM UTC every day (9:01 AM IST)
-    - cron: '31 3 * * *'
+    # Run at 4:31 AM UTC every day (10:01 AM IST)
+    - cron: '31 4 * * *'
   workflow_dispatch:  # Allows manual triggering
 
 jobs:
