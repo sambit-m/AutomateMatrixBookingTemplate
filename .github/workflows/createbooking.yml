@@ -3,7 +3,8 @@ name: Create booking
 on:
   schedule:
     # Run at 6:31 PM UTC every day (12:01 AM IST next day)
-    - cron: '31 18 * * *'
+    # ~14min prepone
+    - cron: '16,20,31 18 * * *'
   workflow_dispatch:  # Allows manual triggering
 
 jobs:
